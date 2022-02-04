@@ -2,16 +2,23 @@
 
 const http = require('http');
 const dependencies = require('../../../config/dependencies');
-var app = require('../app')(dependencies);
-
-var port = normalizePort(process.env.PORT || '3000');
+const dbProvider = require('../../db');
+const databaseService = dbProvider(dependencies.db);
+const app = require('../app')(dependencies);
+const server = http.createServer(app);
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-var server = http.createServer(app);
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+databaseService.initDatabase().then(
+  () => {
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  },
+  (err) => {
+    console.error('could not load database ', err);
+  }
+);
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
