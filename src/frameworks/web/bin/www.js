@@ -4,7 +4,7 @@ const http = require('http');
 const dependencies = require('../../../config/dependencies');
 const dbProvider = require('../../db');
 const databaseService = dbProvider(dependencies.db);
-const app = require('../app')(dependencies);
+const app = require('../app')({ carRepository: databaseService.repository });
 const server = http.createServer(app);
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

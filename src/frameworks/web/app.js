@@ -3,12 +3,12 @@ const express = require('express');
 
 const apiRouter = require('./routes');
 
-const app = (dependencies) => {
+const app = (repositories) => {
   const app = express();
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  app.use('/api', apiRouter(dependencies.studentRepository));
+  app.use('/api', apiRouter(repositories.studentRepository));
 
   app.use(function (req, res, next) {
     next(createError(404));
