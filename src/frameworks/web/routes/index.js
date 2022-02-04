@@ -5,7 +5,7 @@ const apiRouter = (repository) => {
   const router = express.Router();
   const carRouter = cars(repository);
 
-  router.use('/', carRouter);
+  router.use('/cars', carRouter);
 
   return router;
 };

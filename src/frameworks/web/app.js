@@ -1,4 +1,4 @@
-// var createError = require('http-errors');
+var createError = require('http-errors');
 const express = require('express');
 
 const apiRouter = require('./routes');
@@ -19,7 +19,7 @@ const app = (repositories) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
-    res.render('error');
+    res.json('error');
   });
 
   return app;
