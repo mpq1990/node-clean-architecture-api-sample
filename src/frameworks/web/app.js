@@ -4,11 +4,12 @@ const express = require('express');
 const apiRouter = require('./routes');
 
 const app = (repositories) => {
+  console.log(repositories);
   const app = express();
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  app.use('/api', apiRouter(repositories.studentRepository));
+  app.use('/api', apiRouter(repositories.carRepository));
 
   app.use(function (req, res, next) {
     next(createError(404));
@@ -16,10 +17,10 @@ const app = (repositories) => {
 
   // error handler
   app.use(function (err, req, res, next) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    const message = err.message;
+    // const error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
-    res.json('error');
+    res.json({ errors: message });
   });
 
   return app;

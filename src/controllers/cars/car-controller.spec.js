@@ -2,9 +2,9 @@ const { expect } = require('chai');
 const CarsController = require('./cars-controller');
 
 describe('execute', () => {
-  it('returns a car object use case', () => {
+  it('returns a car object use case', (done) => {
     const repository = {
-      add: (car) => car,
+      add: (car) => Promise.resolve(car),
     };
 
     let input = {
@@ -17,8 +17,11 @@ describe('execute', () => {
     };
 
     const controller = new CarsController(repository);
-    const carObject = controller.addNewCar(input);
-    expect(carObject.car.id).to.equal(1);
+    controller.addNewCar(input).then((carObject) => {
+      expect(carObject.car.id).to.equal(1);
+    });
+
+    done();
   });
 
   it('throws an error if required property is not present', () => {
@@ -32,10 +35,12 @@ describe('execute', () => {
     };
 
     const controller = new CarsController(repository);
-    const carObject = controller.addNewCar(input);
-    expect(carObject.errors).to.equal(
-      "data must have required property 'color'"
-    );
+    controller.addNewCar(input).then((carObject) => {
+      expect(carObject.errors).to.equal(
+        "data must have required property 'color'"
+      );
+      done();
+    });
   });
 
   it('throws an error if additional property is present in the object', () => {
@@ -54,9 +59,11 @@ describe('execute', () => {
     };
 
     const controller = new CarsController(repository);
-    const carObject = controller.addNewCar(input);
-    expect(carObject.errors).to.equal(
-      'data must NOT have additional properties'
-    );
+    controller.addNewCar(input).then((carObject) => {
+      expect(carObject.errors).to.equal(
+        'data must NOT have additional properties'
+      );
+      done();
+    });
   });
 });

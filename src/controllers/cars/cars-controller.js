@@ -5,26 +5,41 @@ const carSchema = require('./car-schema');
 class CarsController {
   constructor(carRepository) {
     this.addCar = new AddCar(carRepository);
-    this.ajv = new Ajv();
+    this.ajv = new Ajv({ allErrors: true });
   }
 
   addNewCar(carPayload) {
     const validate = this.ajv.compile(carSchema);
     const valid = validate(carPayload);
-
-    if (valid) {
-      return {
-        success: true,
-        car: this.addCar.execute(carPayload),
-        errors: null,
-      };
-    } else {
-      return {
-        success: false,
-        car: null,
-        errors: this.ajv.errorsText(validate.errors),
-      };
-    }
+    return new Promise((resolve, reject) => {
+      if (valid) {
+        this.addCar.execute(carPayload).then(
+          (car) => {
+            console.log('sss');
+            resolve({
+              car,
+              validation: true,
+              errors: null,
+            });
+          },
+          (error) => {
+            console.log('ha');
+            reject({
+              validation: false,
+              car: null,
+              errors: error,
+            });
+          }
+        );
+      } else {
+        console.log('hee');
+        reject({
+          car: null,
+          validation: true,
+          errors: this.ajv.errorsText(validate.errors),
+        });
+      }
+    });
   }
 }
 

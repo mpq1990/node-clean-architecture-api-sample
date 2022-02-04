@@ -4,7 +4,7 @@ const app = require('../app')({
   add: (car) => car,
 });
 
-describe.only('GET /api/cars', () => {
+describe('GET /api/cars', () => {
   it('should return 200', (done) => {
     supertest(app).get('/api/cars').expect(200, done);
   });

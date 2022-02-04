@@ -6,9 +6,9 @@ const carSchema = {
     make: { type: 'string' },
     model: { type: 'string' },
     brand: { type: 'string' },
-    mileage: { type: 'string' },
+    mileage: { type: 'number' },
   },
-  required: ['id', 'color'],
+  required: ['make', 'model', 'brand', 'mileage', 'color'],
   additionalProperties: false,
 };
 

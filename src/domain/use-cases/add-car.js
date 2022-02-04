@@ -6,7 +6,10 @@ class AddCar {
   }
 
   execute(carObject) {
+    console.log('add car use case');
     const car = new Car(carObject);
+    console.log(car);
+    console.log(this.carRepository);
     return this.carRepository.add(car);
   }
 }

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const IDatabaseServices = require('../../web/contracts/database-service');
 const CarRepository = require('./repository/carRepository');
 
@@ -8,7 +9,12 @@ class DatabaseServices extends IDatabaseServices {
   }
 
   initDatabase() {
-    return Promise.resolve();
+    const mongoDB = 'mongodb://localhost:27017';
+
+    return mongoose.connect(mongoDB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   }
 }
 
