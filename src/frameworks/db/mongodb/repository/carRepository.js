@@ -1,6 +1,6 @@
 const ICarRepository = require('../../../../domain/contracts/car-repository');
 const Car = require('../model/car');
-const carDto = require('./dto/car');
+const { toCar } = require('./dto/car');
 
 class CarRepository extends ICarRepository {
   constructor() {
@@ -8,14 +8,12 @@ class CarRepository extends ICarRepository {
   }
 
   add(carPayload) {
-    console.log('repo');
-    console.log(carPayload);
     const car = new Car(carPayload);
     return new Promise((resolve, reject) => {
       car.save((err) => {
         if (err) reject(err);
 
-        resolve(carDto(car));
+        resolve(toCar(car));
       });
     });
   }

@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const carDto = require('./car');
+const { fromCar } = require('./car');
 
 describe('carDto', () => {
   it('converts the car mongo model to domain model', () => {
@@ -11,7 +11,7 @@ describe('carDto', () => {
       mileage: 2000,
     };
 
-    let result = carDto(carModel);
+    let result = fromCar(carModel);
 
     expect(result.id).to.equal(1);
     expect(result.make).to.equal('make');

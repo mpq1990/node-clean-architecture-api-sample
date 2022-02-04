@@ -12,7 +12,7 @@ const carRouter = (repository) => {
 
   router.route('/').post((req, res, next) => {
     controller.addNewCar(req.body).then(
-      (car) => {
+      ({ car }) => {
         res.json(car);
       },
       (err) => {

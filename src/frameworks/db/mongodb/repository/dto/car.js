@@ -1,9 +1,12 @@
-const car = (car) => {
+const toCar = (car) => {
   let { _id: omit, ...res } = car;
   return {
     id: car._id,
-    ...res,
+    model: car.model,
+    make: car.make,
+    color: car.color,
+    mileage: car.mileage,
   };
 };
 
-module.exports = car;
+module.exports = { toCar };
