@@ -1,11 +1,8 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
-var app = require('../app');
-var http = require('http');
+const http = require('http');
+const dependencies = require('../../../config/dependencies');
+var app = require('../app')(dependencies);
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

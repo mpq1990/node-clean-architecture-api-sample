@@ -1,28 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+// var createError = require('http-errors');
+const express = require('express');
 
-var app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const apiRouter = require('./routes');
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+const app = (dependencies) => {
+  const app = express();
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+  app.use('/api', apiRouter(dependencies.studentRepository));
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  app.use(function (req, res, next) {
+    next(createError(404));
+  });
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+  // error handler
+  app.use(function (err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+
+  return app;
+};
 
 module.exports = app;
