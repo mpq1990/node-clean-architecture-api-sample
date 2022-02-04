@@ -31,6 +31,12 @@ class CarsController {
     });
   }
 
+  getById(id) {}
+
+  delete(id) {}
+
+  update(carPayload) {}
+
   addCar(carPayload) {
     const validate = this.ajv.compile(carSchema);
     const valid = validate(carPayload);

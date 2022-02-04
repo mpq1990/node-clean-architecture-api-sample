@@ -1,8 +1,14 @@
+const { expect } = require('chai');
 const supertest = require('supertest');
 
-const app = require('../app')({
-  add: (car) => car,
-});
+const fakeRepository = {
+  carRepository: {
+    add: (car) => Promise.resolve(car),
+    getAll: () => Promise.resolve([]),
+  },
+};
+
+const app = require('../app')(fakeRepository);
 
 describe('GET /api/cars', () => {
   it('should return 200', (done) => {
