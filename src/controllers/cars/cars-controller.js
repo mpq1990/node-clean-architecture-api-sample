@@ -1,21 +1,20 @@
-const AddCar = require('../../domain/use-cases/add-car.js');
+const AddCarUseCase = require('../../domain/use-cases/add-car.js');
 const Ajv = require('ajv');
 const carSchema = require('./car-schema');
 
 class CarsController {
   constructor(carRepository) {
-    this.addCar = new AddCar(carRepository);
+    this.addCarUseCase = new AddCarUseCase(carRepository);
     this.ajv = new Ajv({ allErrors: true });
   }
 
-  addNewCar(carPayload) {
+  addCar(carPayload) {
     const validate = this.ajv.compile(carSchema);
     const valid = validate(carPayload);
     return new Promise((resolve, reject) => {
       if (valid) {
-        this.addCar.execute(carPayload).then(
+        this.addCarUseCase.execute(carPayload).then(
           (car) => {
-            console.log('sss');
             resolve({
               car,
               validation: true,
@@ -23,7 +22,6 @@ class CarsController {
             });
           },
           (error) => {
-            console.log('ha');
             reject({
               validation: false,
               car: null,
@@ -32,7 +30,6 @@ class CarsController {
           }
         );
       } else {
-        console.log('hee');
         reject({
           car: null,
           validation: true,

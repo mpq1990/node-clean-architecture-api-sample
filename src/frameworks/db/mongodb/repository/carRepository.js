@@ -1,6 +1,6 @@
 const ICarRepository = require('../../../../domain/contracts/car-repository');
 const Car = require('../model/car');
-const { toCar } = require('./dto/car');
+const { toCar } = require('./dto/car-dto');
 
 class CarRepository extends ICarRepository {
   constructor() {

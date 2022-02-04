@@ -4,7 +4,6 @@ const express = require('express');
 const apiRouter = require('./routes');
 
 const app = (repositories) => {
-  console.log(repositories);
   const app = express();
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
@@ -18,7 +17,8 @@ const app = (repositories) => {
   // error handler
   app.use(function (err, req, res, next) {
     const message = err.message;
-    // const error = req.app.get('env') === 'development' ? err : {};
+    const error = req.app.get('env') === 'development' ? err : {};
+    console.error(error);
     res.status(err.status || 500);
     res.json({ errors: message });
   });

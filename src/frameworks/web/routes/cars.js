@@ -11,7 +11,7 @@ const carRouter = (repository) => {
   });
 
   router.route('/').post((req, res, next) => {
-    controller.addNewCar(req.body).then(
+    controller.addCar(req.body).then(
       ({ car }) => {
         res.json(car);
       },
