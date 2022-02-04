@@ -6,23 +6,36 @@ const carRouter = (repository) => {
   const router = express.Router();
   const controller = new CarsController(repository);
 
-  router.route('/').get((req, res) => {
-    res.json('Hi');
+  router.route('/').get((req, res, next) => {
+    controller
+      .getAll()
+      .then(
+        ({ cars }) => {
+          res.json(cars);
+        },
+        (err) => {
+          next((err.errors = err + err.errors));
+        }
+      )
+      .catch((err) => next(err));
   });
 
   router.route('/').post((req, res, next) => {
-    controller.addCar(req.body).then(
-      ({ car }) => {
-        res.json(car);
-      },
-      (err) => {
-        if (err.validation) {
-          next(createError(400, err.errors));
-        } else {
-          next(err.errors);
+    controller
+      .addCar(req.body)
+      .then(
+        ({ car }) => {
+          res.json(car);
+        },
+        (err) => {
+          if (err.validation) {
+            next(createError(400, err.errors));
+          } else {
+            next(err.errors);
+          }
         }
-      }
-    );
+      )
+      .catch((err) => next(err));
   });
 
   return router;

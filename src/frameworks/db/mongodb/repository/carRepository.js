@@ -1,6 +1,6 @@
 const ICarRepository = require('../../../../domain/contracts/car-repository');
 const Car = require('../model/car');
-const { toCar } = require('./dto/car-dto');
+const { toCar, toCars } = require('./dto/car-dto');
 
 class CarRepository extends ICarRepository {
   constructor() {
@@ -14,6 +14,14 @@ class CarRepository extends ICarRepository {
         if (err) reject(err);
 
         resolve(toCar(car));
+      });
+    });
+  }
+
+  getAll() {
+    return new Promise((resolve, reject) => {
+      Car.find({}).then((cars) => {
+        resolve(toCars(cars));
       });
     });
   }

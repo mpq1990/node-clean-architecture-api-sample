@@ -9,4 +9,8 @@ const toCar = (car) => {
   };
 };
 
-module.exports = { toCar };
+const toCars = (cars) => {
+  return cars.map(toCar);
+};
+
+module.exports = { toCar, toCars };

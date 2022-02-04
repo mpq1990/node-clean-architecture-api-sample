@@ -1,11 +1,34 @@
 const AddCarUseCase = require('../../domain/use-cases/add-car.js');
+const GetAllCarsUseCase = require('../../domain/use-cases/get-all-cars');
 const Ajv = require('ajv');
 const carSchema = require('./car-schema');
 
 class CarsController {
   constructor(carRepository) {
     this.addCarUseCase = new AddCarUseCase(carRepository);
+    this.getAllCarsUseCase = new GetAllCarsUseCase(carRepository);
     this.ajv = new Ajv({ allErrors: true });
+  }
+
+  getAll() {
+    return new Promise((resolve, reject) => {
+      this.getAllCarsUseCase.execute().then(
+        (cars) => {
+          resolve({
+            cars,
+            validation: true,
+            errors: null,
+          });
+        },
+        (error) => {
+          reject({
+            validation: false,
+            car: null,
+            errors: error,
+          });
+        }
+      );
+    });
   }
 
   addCar(carPayload) {
