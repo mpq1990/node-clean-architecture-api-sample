@@ -11,7 +11,7 @@ const toCar = (car) => {
 };
 
 const toCars = (cars) => {
-  return cars.map(toCar);
+  return cars.map(toMetaCar);
 };
 
 const fromCarId = (id) => {
@@ -20,4 +20,14 @@ const fromCarId = (id) => {
   };
 };
 
-module.exports = { toCar, toCars, fromCarId };
+const toMetaCar = (car) => {
+  // eslint-disable-next-line no-unused-vars
+  let { _id: omit, ...res } = car;
+  return {
+    id: car._id,
+    model: car.model,
+    make: car.make,
+  };
+};
+
+module.exports = { toCar, toCars, fromCarId, toMetaCar };
