@@ -24,9 +24,9 @@ const carRouter = (repository) => {
     controller
       .addCar(req.body)
       .then(
-        ({ cars }) => {
+        ({ car }) => {
           res.status(201);
-          res.json(cars);
+          res.json(car);
         },
         (err) => {
           if (err.validation) {

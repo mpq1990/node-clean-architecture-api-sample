@@ -58,7 +58,7 @@ class CarRepository extends ICarRepository {
 
   update(id, payload) {
     return new Promise((resolve, reject) => {
-      Car.updateOne(
+      Car.findByIdAndUpdate(
         { _id: id },
         {
           ...payload,
