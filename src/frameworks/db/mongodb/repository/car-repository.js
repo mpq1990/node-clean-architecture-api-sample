@@ -20,9 +20,25 @@ class CarRepository extends ICarRepository {
 
   getAll() {
     return new Promise((resolve, reject) => {
-      Car.find({}).then((cars) => {
-        resolve(toCars(cars));
-      });
+      Car.find({})
+        .then((cars) => {
+          resolve(toCars(cars));
+        })
+        .catch(reject);
+    });
+  }
+
+  getById(id) {
+    return new Promise((resolve, reject) => {
+      Car.findById(id)
+        .then((car) => {
+          if (car) {
+            resolve(toCar(car));
+          } else {
+            resolve(null);
+          }
+        })
+        .catch(reject);
     });
   }
 }

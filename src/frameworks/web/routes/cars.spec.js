@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const supertest = require('supertest');
 
 const fakeRepository = {
@@ -37,7 +36,7 @@ describe('GET /api/cars', () => {
   });
 });
 
-describe.only('GET /api/cars/:id', () => {
+describe('GET /api/cars/:id', () => {
   it('should return 200', (done) => {
     supertest(app)
       .get('/api/cars/1')

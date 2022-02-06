@@ -43,7 +43,11 @@ const carRouter = (repository) => {
       .getById(req.params.id)
       .then(
         ({ car }) => {
-          res.json(car);
+          if (car) {
+            res.json(car);
+          } else {
+            next(createError(404));
+          }
         },
         (err) => {
           if (err.validation) {
