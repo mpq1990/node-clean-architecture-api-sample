@@ -2,7 +2,7 @@
   "name": "car-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/frameworks/web/bin/www.js",
   "scripts": {
     "start": "node ./src/frameworks/web/bin/www",
     "dev": "nodemon ./src/frameworks/web/bin/www",
