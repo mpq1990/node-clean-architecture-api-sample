@@ -13,7 +13,7 @@ class InMemoryDatabaseService extends IDatabaseServices {
   initDatabase() {
     const opts = { useNewUrlParser: true, useUnifiedTopology: true };
 
-    return MongoMemoryServer.create()
+    return MongoMemoryServer.create({ debug: true })
       .then((mongoServer) => {
         this.mongoServer = mongoServer;
         const mongoUri = mongoServer.getUri();
@@ -25,8 +25,8 @@ class InMemoryDatabaseService extends IDatabaseServices {
   }
 
   disconnect() {
-    mongoose.disconnect().then(() => {
-      this.mongoServer.stop();
+    return mongoose.disconnect().then(() => {
+      return this.mongoServer.stop();
     });
   }
 }

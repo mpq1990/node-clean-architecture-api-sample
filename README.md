@@ -70,3 +70,4 @@ npm run lint:fix
 10. Replace the solution with NEST JS. It uses `convention over configuration` to enforce structure on us to develop application using clean architecture principles.
 11. Add proper logging, i.e. using morgen with winston
 12. Use a proper dependency injection container i.e. [inversify](https://inversify.io/)
+13. The test setup and structure is not great. Have better semantic separation between unit, integration tests etc, have proper setup and clean up, add test coverage tooling.

@@ -17,7 +17,7 @@ const app = (repositories) => {
   // error handler
   app.use(function (err, req, res, _next) {
     const message = err.message;
-    const error = req.app.get('env') === 'development' ? err : {};
+    const error = process.env.NODE_ENV === 'development' ? err : {};
     console.error(error);
     res.status(err.status || 500);
     res.json({ errors: message });

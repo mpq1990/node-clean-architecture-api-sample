@@ -188,3 +188,9 @@ describe('DELETE /api/cars/:id', () => {
       .catch(done);
   });
 });
+
+after((done) => {
+  databaseService.disconnect().then(() => {
+    done();
+  });
+});
