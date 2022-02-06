@@ -68,3 +68,5 @@ npm run lint:fix
 8. Add some documentation to the api like using swagger etc
 9. Add static type checking by adding typescript or flow
 10. Replace the solution with NEST JS. It uses `convention over configuration` to enforce structure on us to develop application using clean architecture principles.
+11. Add proper logging, i.e. using morgen with winston
+12. Use a proper dependency injection container i.e. [inversify](https://inversify.io/)

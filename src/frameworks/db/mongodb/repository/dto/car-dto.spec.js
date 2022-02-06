@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const { toCar, toCars, fromCarId, toMetaCar } = require('./car-dto');
 
-describe.only('carDto', () => {
+describe('carDto', () => {
   describe('toCar', () => {
     it('converts the car mongo model to domain model', () => {
       let carModel = {

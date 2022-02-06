@@ -4,4 +4,8 @@ module.exports = class DatabaseServices {
   initDatabase() {
     return Promise.reject(new Error('not implemented'));
   }
+
+  disconnect() {
+    return Promise.reject(new Error('not implemented'));
+  }
 };
