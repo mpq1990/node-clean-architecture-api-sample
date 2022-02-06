@@ -30,7 +30,7 @@ Here is where we put the code that belongs to the frameworks i.e web interface (
 docker-compose up --build
 ```
 
-#### 2) Install node packages and start the server locally. Make sure to have a mongo server running and set the following envs `MONGO_HOST`, `MONGO_PORT` and `MONGO_DB_NAME`
+#### 2) Install node packages and start the server locally. Make sure to have a mongo server running and set the following envs `MONGO_HOST`, `MONGO_PORT` and `MONGO_DB_NAME`. Make sure to set the static api key: `API_KEY`
 
 ```
 npm install
@@ -71,4 +71,4 @@ npm run lint:fix
 11. Add proper logging, i.e. using morgen with winston
 12. Use a proper dependency injection container i.e. [inversify](https://inversify.io/)
 13. The test setup and structure is not great. Have better semantic separation between unit, integration tests etc, have proper setup and clean up, add test coverage tooling.
-14. Add authentication to the api
+14. Add better authentication

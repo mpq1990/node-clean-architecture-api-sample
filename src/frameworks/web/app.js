@@ -2,13 +2,14 @@ var createError = require('http-errors');
 const express = require('express');
 
 const apiRouter = require('./routes');
+const { authenticate } = require('./middleware/authentication');
 
 const app = (repositories) => {
   const app = express();
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  app.use('/api', apiRouter(repositories.carRepository));
+  app.use('/api', authenticate, apiRouter(repositories.carRepository));
 
   app.use(function (req, res, next) {
     next(createError(404));

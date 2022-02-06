@@ -7,6 +7,7 @@ const app = require('../app')({ carRepository: databaseService.repository });
 
 before((done) => {
   databaseService.initDatabase().then(() => {
+    process.env.API_KEY = 'test';
     done();
   });
 });
@@ -31,6 +32,7 @@ const buildCar = (payload) => {
   return new Promise((resolve, reject) => {
     supertest(app)
       .post('/api/cars')
+      .set('x-api-key', process.env.API_KEY)
       .send({
         ...payload,
       })
@@ -61,6 +63,7 @@ describe('GET /api/cars', () => {
     Promise.all([buildCar(carOne), buildCar(carTwo)]).then((_cars) => {
       supertest(app)
         .get('/api/cars')
+        .set('x-api-key', process.env.API_KEY)
         .then(({ status, body }) => {
           expect(body.length).to.equal(2);
           expect(status).to.equal(200);
@@ -71,7 +74,11 @@ describe('GET /api/cars', () => {
   });
 
   it('returns empty if no cars present', (done) => {
-    supertest(app).get('/api/cars').expect([]).expect(200, done);
+    supertest(app)
+      .get('/api/cars')
+      .set('x-api-key', process.env.API_KEY)
+      .expect([])
+      .expect(200, done);
   });
 });
 
@@ -80,6 +87,7 @@ describe('POST /api/cars', () => {
     supertest(app)
       .post('/api/cars')
       .set('Accept', 'application/json')
+      .set('x-api-key', process.env.API_KEY)
       .send(carOne)
       .then(({ status, body }) => {
         expect(body.color).to.equal(carOne.color);
@@ -93,6 +101,7 @@ describe('POST /api/cars', () => {
     supertest(app)
       .post('/api/cars')
       .set('Accept', 'application/json')
+      .set('x-api-key', process.env.API_KEY)
       .send({
         make: 'corolla',
         model: 'corolla',
@@ -106,6 +115,7 @@ describe('GET /api/cars/:id', () => {
     Promise.all([buildCar(carOne), buildCar(carTwo)]).then((cars) => {
       supertest(app)
         .get(`/api/cars/${cars[0].id}`)
+        .set('x-api-key', process.env.API_KEY)
         .then(({ status, body }) => {
           expect(body.color).to.equal(carOne.color);
           expect(status).to.equal(200);
@@ -118,6 +128,7 @@ describe('GET /api/cars/:id', () => {
   it('should return 404 if no car present', (done) => {
     supertest(app)
       .get(`/api/cars/${mongoose.Types.ObjectId()}`)
+      .set('x-api-key', process.env.API_KEY)
       .then(({ status }) => {
         expect(status).to.equal(404);
         done();
@@ -131,6 +142,7 @@ describe('PATCH /api/cars/:id', () => {
     Promise.all([buildCar(carOne), buildCar(carTwo)]).then((cars) => {
       supertest(app)
         .patch(`/api/cars/${cars[0].id}`)
+        .set('x-api-key', process.env.API_KEY)
         .set('Accept', 'application/json')
         .send({ color: 'pink' })
         .then(({ status, body }) => {
@@ -147,6 +159,7 @@ describe('PATCH /api/cars/:id', () => {
       supertest(app)
         .patch(`/api/cars/${cars[0].id}`)
         .set('Accept', 'application/json')
+        .set('x-api-key', process.env.API_KEY)
         .send({ id: 1 })
         .then(({ status }) => {
           expect(status).to.equal(400);
@@ -162,12 +175,14 @@ describe('DELETE /api/cars/:id', () => {
     Promise.all([buildCar(carOne), buildCar(carTwo)]).then((cars) => {
       supertest(app)
         .delete(`/api/cars/${cars[0].id}`)
+        .set('x-api-key', process.env.API_KEY)
         .set('Accept', 'application/json')
         .send({ color: 'pink' })
         .then(({ status }) => {
           expect(status).to.equal(204);
           supertest(app)
             .get(`/api/cars/${cars[0].id}`)
+            .set('x-api-key', process.env.API_KEY)
             .then(({ status }) => {
               expect(status).to.equal(404);
               done();
@@ -181,6 +196,7 @@ describe('DELETE /api/cars/:id', () => {
   it('should return 404 if no car present', (done) => {
     supertest(app)
       .delete(`/api/cars/${mongoose.Types.ObjectId()}`)
+      .set('x-api-key', process.env.API_KEY)
       .then(({ status }) => {
         expect(status).to.equal(404);
         done();
