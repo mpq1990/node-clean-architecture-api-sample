@@ -57,7 +57,6 @@ class CarRepository extends ICarRepository {
   }
 
   update(id, payload) {
-    console.log('in repo');
     return new Promise((resolve, reject) => {
       Car.updateOne(
         { _id: id },

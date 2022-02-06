@@ -1,19 +1,19 @@
 class CarRepository {
   constructor() {}
 
-  add(carInstance) {
+  add(_carInstance) {
     return Promise.reject(new Error('not implemented'));
   }
 
-  update(carId) {
+  update(_carId) {
     return Promise.reject(new Error('not implemented'));
   }
 
-  delete(carId) {
+  delete(_carId) {
     return Promise.reject(new Error('not implemented'));
   }
 
-  getById(carId) {
+  getById(_carId) {
     return Promise.reject(new Error('not implemented'));
   }
 

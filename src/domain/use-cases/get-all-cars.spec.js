@@ -4,7 +4,7 @@ const GetAllCars = require('./get-all-cars');
 describe('execute', () => {
   it('returns a car array from the repository', () => {
     const repository = {
-      getAll: (car) => Promise.resolve(cars),
+      getAll: (_car) => Promise.resolve(cars),
     };
 
     let cars = [

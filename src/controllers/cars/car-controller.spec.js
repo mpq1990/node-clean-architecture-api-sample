@@ -35,7 +35,7 @@ describe('execute', () => {
 
       const controller = new CarsController(repository);
       return controller.addCar(input).then(
-        (carObject) => {},
+        (_carObject) => {},
         (err) => {
           expect(err.errors).to.equal(
             `data must have required property 'model', data must have required property 'brand', data must have required property 'mileage', data must have required property 'color'`
@@ -61,7 +61,7 @@ describe('execute', () => {
 
       const controller = new CarsController(repository);
       return controller.addCar(input).then(
-        (carObject) => {},
+        (_carObject) => {},
         (error) => {
           expect(error.errors).to.equal(
             'data must NOT have additional properties'
@@ -98,7 +98,7 @@ describe('execute', () => {
   describe('getById', () => {
     it('returns car from the repository ', () => {
       const repository = {
-        getById: (id) => Promise.resolve(expectedOut),
+        getById: (_id) => Promise.resolve(expectedOut),
       };
 
       let expectedOut = {
@@ -120,7 +120,7 @@ describe('execute', () => {
   describe('delete', () => {
     it('returns all car from the repository ', () => {
       const repository = {
-        delete: (id) => Promise.resolve(expectedOut),
+        delete: (_id) => Promise.resolve(expectedOut),
       };
 
       let expectedOut = {

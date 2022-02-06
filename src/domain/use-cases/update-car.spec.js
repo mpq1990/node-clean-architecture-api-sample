@@ -4,7 +4,7 @@ const UpdateCar = require('./update-car');
 describe('execute', () => {
   it('returns an updated car object from the repository', () => {
     const repository = {
-      update: (id) => Promise.resolve(car),
+      update: (_id) => Promise.resolve(car),
     };
 
     let car = {

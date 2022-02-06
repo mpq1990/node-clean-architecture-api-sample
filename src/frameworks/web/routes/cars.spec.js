@@ -5,8 +5,8 @@ const fakeRepository = {
     add: (car) => Promise.resolve(car),
     getAll: () => Promise.resolve([{ id: 1 }]),
     getById: (id) => Promise.resolve({ id, color: 'green' }),
-    update: (id, payload) => Promise.resolve({ color: 'blue' }),
-    delete: (id) => Promise.resolve(),
+    update: (_id, _payload) => Promise.resolve({ color: 'blue' }),
+    delete: (_id) => Promise.resolve(),
   },
 };
 

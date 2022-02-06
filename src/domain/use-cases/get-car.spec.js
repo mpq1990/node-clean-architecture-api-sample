@@ -4,7 +4,7 @@ const GetCar = require('./get-car');
 describe('execute', () => {
   it('returns a car object from the repository', () => {
     const repository = {
-      getById: (id) => Promise.resolve(car),
+      getById: (_id) => Promise.resolve(car),
     };
 
     let car = {

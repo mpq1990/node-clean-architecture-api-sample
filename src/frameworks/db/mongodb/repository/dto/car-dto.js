@@ -1,4 +1,5 @@
 const toCar = (car) => {
+  // eslint-disable-next-line no-unused-vars
   let { _id: omit, ...res } = car;
   return {
     id: car._id,

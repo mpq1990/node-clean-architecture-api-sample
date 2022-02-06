@@ -4,7 +4,7 @@ const DeleteCar = require('./delete-car');
 describe('execute', () => {
   it('returns a car object from the repository', () => {
     const repository = {
-      delete: (id) => Promise.resolve(car),
+      delete: (_id) => Promise.resolve(car),
     };
 
     let car = {

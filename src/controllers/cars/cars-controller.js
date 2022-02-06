@@ -83,7 +83,6 @@ class CarsController {
   update(id, payload) {
     const validate = this.ajv.compile(carUpdateSchema);
     const valid = validate(payload);
-    console.log('hi');
     return new Promise((resolve, reject) => {
       if (valid) {
         this.updateCarUseCase.execute(id, payload).then(
