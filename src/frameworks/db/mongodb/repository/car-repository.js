@@ -62,7 +62,8 @@ class CarRepository extends ICarRepository {
         { _id: id },
         {
           ...payload,
-        }
+        },
+        { new: true }
       )
         .then((car) => {
           resolve(toCar(car));
