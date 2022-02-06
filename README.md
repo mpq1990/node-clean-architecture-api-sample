@@ -58,7 +58,7 @@ npm run lint:fix
 
 ## 🏛💲 Improvements
 
-1. Replace promise chains to async await. I don't know why i even started without them.
+1. ## Replace promise chains to async await. I don't know why i even started this project without them and then didnt stop.
 2. Introduce pm2 to make use of all available resources on the machine.
 3. Increase testing scope, add more granular unit tests and cover more cases.
 4. Add more logic of converting data transfer object from one form to another on the controller/route level.
