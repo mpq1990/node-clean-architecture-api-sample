@@ -6,7 +6,7 @@ A RESTful car api service
 
 This is a simple node application that exposes end points to manipulate the car resource.
 
-The project is structured to follow the clean architecture model. More details can be found at this blog from uncle bob[source](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+The project is structured to follow the clean architecture model. More details can be found at this blog from uncle bob [source](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 The project is split in to independent layers. Domain, Controller and Framework.
 
