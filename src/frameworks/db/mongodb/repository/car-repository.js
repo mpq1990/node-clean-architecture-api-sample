@@ -1,6 +1,6 @@
 const ICarRepository = require('../../../../domain/contracts/car-repository');
 const Car = require('../model/car');
-const { toCar, toCars } = require('./dto/car-dto');
+const { toCar, toCars, fromCarId } = require('./dto/car-dto');
 
 class CarRepository extends ICarRepository {
   constructor() {
@@ -36,6 +36,20 @@ class CarRepository extends ICarRepository {
             resolve(toCar(car));
           } else {
             resolve(null);
+          }
+        })
+        .catch(reject);
+    });
+  }
+
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      Car.deleteOne(fromCarId(id))
+        .then(({ deletedCount }) => {
+          if (deletedCount) {
+            resolve(deletedCount);
+          } else {
+            reject();
           }
         })
         .catch(reject);

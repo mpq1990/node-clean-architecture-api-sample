@@ -9,7 +9,7 @@ class CarRepository {
     return Promise.reject(new Error('not implemented'));
   }
 
-  delete(carInstance) {
+  delete(carId) {
     return Promise.reject(new Error('not implemented'));
   }
 

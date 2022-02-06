@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { toCar, toCars } = require('./car-dto');
+const { toCar, toCars, fromCarId } = require('./car-dto');
 
 describe('carDto', () => {
   describe('toCar', () => {
@@ -48,6 +48,17 @@ describe('carDto', () => {
       expect(result[0].color).to.equal('color');
       expect(result[0].mileage).to.equal(2000);
       expect(result[0]).to.not.have.own.property('_id');
+    });
+  });
+
+  describe('fromCarId', () => {
+    it('converts the id to mongo specific id', () => {
+      let id = 1;
+
+      let result = fromCarId(id);
+
+      expect(result._id).to.equal(1);
+      expect(result).to.not.have.own.property('id');
     });
   });
 });

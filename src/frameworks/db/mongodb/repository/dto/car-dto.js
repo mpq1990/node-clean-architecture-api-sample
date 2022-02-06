@@ -13,4 +13,10 @@ const toCars = (cars) => {
   return cars.map(toCar);
 };
 
-module.exports = { toCar, toCars };
+const fromCarId = (id) => {
+  return {
+    _id: id,
+  };
+};
+
+module.exports = { toCar, toCars, fromCarId };

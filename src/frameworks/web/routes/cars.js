@@ -60,6 +60,24 @@ const carRouter = (repository) => {
       .catch((err) => next(err));
   });
 
+  router.route('/:id').delete((req, res, next) => {
+    controller
+      .delete(req.params.id)
+      .then(
+        (_result) => {
+          res.status(204).end();
+        },
+        (err) => {
+          if (err.validation) {
+            next(createError(400, err.errors));
+          } else {
+            next(err.errors);
+          }
+        }
+      )
+      .catch((err) => next(err));
+  });
+
   return router;
 };
 
