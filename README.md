@@ -4,7 +4,16 @@ A RESTful car api service
 
 ## 👷‍♀️👷‍♂️ Project information
 
-This is a simple node application that exposes end points to manipulate the car resource.
+This is a simple node application that exposes end points to manipulate the car resource. It exposes the following end points:
+
+- GET `/api/cars` to get all cars
+- POST `/api/cars` to add a new car
+- GET `/api/cars/:id` to get a car with given id
+- DELETE `/api/cars/:id` to delete a car with given id
+- PATCH `/api/cars/:id` to update a car with the given information.
+
+It uses very basic x-api-key header based authentication.
+The file ./src/frameworks/web/routes/request.http is based on rest client plugin for visual studio code. After running the project, the end points can be tested using this file in vs code after installing the plugin.
 
 The project is structured to follow the clean architecture model. More details can be found at this blog from uncle bob [source](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 

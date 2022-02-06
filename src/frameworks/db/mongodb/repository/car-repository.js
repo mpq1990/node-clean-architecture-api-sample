@@ -66,7 +66,11 @@ class CarRepository extends ICarRepository {
         { new: true }
       )
         .then((car) => {
-          resolve(toCar(car));
+          if (car) {
+            resolve(toCar(car));
+          } else {
+            resolve();
+          }
         })
         .catch(reject);
     });

@@ -1,6 +1,7 @@
 ### Create a new car
 POST http://localhost:3000/api/cars
 content-type: application/json
+x-api-key: test1234
 
 {
     "model": "corolla",
@@ -11,19 +12,23 @@ content-type: application/json
 }
 
 ### Get car by id
-GET http://localhost:3000/api/cars/62000d57a3a191fbc3a6c8ad
+GET http://localhost:3000/api/cars/620037ac2be24d2070fdaa2d
+x-api-key: test1234
 
 ### Get all cars
 GET http://localhost:3000/api/cars
+x-api-key: test1234
 
 
 ### Delete a car with a given id
-DELETE http://localhost:3000/api/cars/id
+DELETE http://localhost:3000/api/cars/620003a663d7b0282b5d6554
+x-api-key: test1234
 
 ### Update a car with a given id
-PATCH http://localhost:3000/api/cars/62000d57a3a191fbc3a6c8ad
+PATCH http://localhost:3000/api/cars/620003a663d7b0282b5d6554
 content-type: application/json
+x-api-key: test1234
 
 {
-    "color": "black"
+    "color": "blue"
 }
