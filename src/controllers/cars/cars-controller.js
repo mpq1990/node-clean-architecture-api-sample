@@ -1,12 +1,14 @@
-const AddCarUseCase = require('../../domain/use-cases/add-car.js');
-const GetAllCarsUseCase = require('../../domain/use-cases/get-all-cars');
 const Ajv = require('ajv');
 const carSchema = require('./car-schema');
+const AddCarUseCase = require('../../domain/use-cases/add-car.js');
+const GetAllCarsUseCase = require('../../domain/use-cases/get-all-cars');
+const GetCar = require('../../domain/use-cases/get-car.js');
 
 class CarsController {
   constructor(carRepository) {
     this.addCarUseCase = new AddCarUseCase(carRepository);
     this.getAllCarsUseCase = new GetAllCarsUseCase(carRepository);
+    this.getCarUseCase = new GetCar(carRepository);
     this.ajv = new Ajv({ allErrors: true });
   }
 
@@ -23,7 +25,7 @@ class CarsController {
         (error) => {
           reject({
             validation: false,
-            car: null,
+            cars: null,
             errors: error,
           });
         }
@@ -31,7 +33,26 @@ class CarsController {
     });
   }
 
-  getById(id) {}
+  getById(id) {
+    return new Promise((resolve, reject) => {
+      this.getCarUseCase.execute(id).then(
+        (car) => {
+          resolve({
+            car,
+            validation: true,
+            errors: null,
+          });
+        },
+        (error) => {
+          reject({
+            validation: false,
+            car: null,
+            errors: error,
+          });
+        }
+      );
+    });
+  }
 
   delete(id) {}
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const IDatabaseServices = require('../../web/contracts/database-service');
-const CarRepository = require('./repository/carRepository');
+const CarRepository = require('./repository/car-repository');
 
 class DatabaseServices extends IDatabaseServices {
   constructor() {

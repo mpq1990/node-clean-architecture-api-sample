@@ -1,4 +1,4 @@
-const CarRepository = require('../frameworks/db/mongodb/repository/carRepository');
+const CarRepository = require('../frameworks/db/mongodb/repository/car-repository');
 
 module.exports = (() => {
   return {

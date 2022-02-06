@@ -2,9 +2,9 @@ const { expect } = require('chai');
 const GetAllCars = require('./get-all-cars');
 
 describe('execute', () => {
-  it('returns a car object from the repository', () => {
+  it('returns a car array from the repository', () => {
     const repository = {
-      getAll: (car) => cars,
+      getAll: (car) => Promise.resolve(cars),
     };
 
     let cars = [
@@ -19,7 +19,8 @@ describe('execute', () => {
     ];
 
     const getAllCars = new GetAllCars(repository);
-    const carObject = getAllCars.execute();
-    expect(carObject.length).to.equal(2);
+    return getAllCars.execute().then((carObject) => {
+      expect(carObject.length).to.equal(2);
+    });
   });
 });

@@ -24,6 +24,24 @@ const carRouter = (repository) => {
     controller
       .addCar(req.body)
       .then(
+        ({ cars }) => {
+          res.json(cars);
+        },
+        (err) => {
+          if (err.validation) {
+            next(createError(400, err.errors));
+          } else {
+            next(err.errors);
+          }
+        }
+      )
+      .catch((err) => next(err));
+  });
+
+  router.route('/:id').get((req, res, next) => {
+    controller
+      .getById(req.params.id)
+      .then(
         ({ car }) => {
           res.json(car);
         },
