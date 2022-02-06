@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/frameworks/web/bin/www",
     "dev": "nodemon ./src/frameworks/web/bin/www",
     "test": "mocha './src/**/*.spec.js' --exit"
   },

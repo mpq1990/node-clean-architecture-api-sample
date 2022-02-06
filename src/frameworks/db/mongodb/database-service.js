@@ -9,7 +9,8 @@ class DatabaseServices extends IDatabaseServices {
   }
 
   initDatabase() {
-    const mongoDB = 'mongodb://localhost:27017';
+    // const mongoDB = 'mongodb://localhost:27017';
+    const mongoDB = `${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.DATABASE_NAME}`;
 
     return mongoose.connect(mongoDB, {
       useNewUrlParser: true,
