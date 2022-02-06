@@ -13,7 +13,6 @@ content-type: application/json
 ### Get car by id
 GET http://localhost:3000/api/cars/62000d57a3a191fbc3a6c8ad
 
-
 ### Get all cars
 GET http://localhost:3000/api/cars
 
