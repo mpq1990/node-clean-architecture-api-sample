@@ -1,0 +1,30 @@
+### Create a new car
+POST http://localhost:3000/api/cars
+content-type: application/json
+
+{
+    "model": "corolla",
+    "brand": "toyota",
+    "make": "2019",
+    "color": "white",
+    "mileage": 1000
+}
+
+### Get car by id
+GET http://localhost:3000/api/cars/62000d57a3a191fbc3a6c8ad
+
+
+### Get all cars
+GET http://localhost:3000/api/cars
+
+
+### Delete a car with a given id
+DELETE http://localhost:3000/api/cars/id
+
+### Update a car with a given id
+PATCH http://localhost:3000/api/cars/62000d57a3a191fbc3a6c8ad
+content-type: application/json
+
+{
+    "color": "black"
+}
