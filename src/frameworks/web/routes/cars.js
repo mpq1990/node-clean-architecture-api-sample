@@ -25,6 +25,7 @@ const carRouter = (repository) => {
       .addCar(req.body)
       .then(
         ({ cars }) => {
+          res.status(201);
           res.json(cars);
         },
         (err) => {
@@ -66,6 +67,28 @@ const carRouter = (repository) => {
       .then(
         (_result) => {
           res.status(204).end();
+        },
+        (err) => {
+          if (err.validation) {
+            next(createError(400, err.errors));
+          } else {
+            next(err.errors);
+          }
+        }
+      )
+      .catch((err) => next(err));
+  });
+
+  router.route('/:id').patch((req, res, next) => {
+    controller
+      .update(req.params.id, req.body)
+      .then(
+        ({ car }) => {
+          if (car) {
+            res.json(car);
+          } else {
+            next(createError(404));
+          }
         },
         (err) => {
           if (err.validation) {

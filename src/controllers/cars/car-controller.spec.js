@@ -138,4 +138,50 @@ describe('execute', () => {
       });
     });
   });
+
+  describe('update', () => {
+    it('returns updated car ', () => {
+      const repository = {
+        update: (_id, _payload) => Promise.resolve(expectedOut),
+      };
+
+      let expectedOut = {
+        make: '1994',
+        color: 'blue',
+        model: 'corolla',
+        brand: 'toyota',
+        mileage: 2000,
+      };
+
+      const controller = new CarsController(repository);
+      return controller.update(1, expectedOut).then((carsObject) => {
+        expect(carsObject.car.color).to.equal('blue');
+      });
+    });
+
+    it('does not accept id in update payload', () => {
+      const repository = {
+        update: (_id, _payload) => Promise.resolve(expectedOut),
+      };
+
+      let expectedOut = {
+        id: 1,
+        make: '1994',
+        color: 'blue',
+        model: 'corolla',
+        brand: 'toyota',
+        mileage: 2000,
+      };
+
+      const controller = new CarsController(repository);
+      return controller.update(1, expectedOut).then(
+        () => {},
+        (error) => {
+          expect(error.errors).to.equal(
+            'data must NOT have additional properties'
+          );
+        }
+      );
+    });
+  });
 });

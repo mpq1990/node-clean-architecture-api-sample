@@ -55,6 +55,22 @@ class CarRepository extends ICarRepository {
         .catch(reject);
     });
   }
+
+  update(id, payload) {
+    console.log('in repo');
+    return new Promise((resolve, reject) => {
+      Car.updateOne(
+        { _id: id },
+        {
+          ...payload,
+        }
+      )
+        .then((car) => {
+          resolve(toCar(car));
+        })
+        .catch(reject);
+    });
+  }
 }
 
 module.exports = CarRepository;

@@ -5,7 +5,7 @@ class CarRepository {
     return Promise.reject(new Error('not implemented'));
   }
 
-  update(carInstance) {
+  update(carId) {
     return Promise.reject(new Error('not implemented'));
   }
 
