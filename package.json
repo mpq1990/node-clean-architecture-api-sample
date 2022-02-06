@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node ./src/frameworks/web/bin/www",
     "dev": "nodemon ./src/frameworks/web/bin/www",
-    "test": "mocha './src/**/*.spec.js' --exit"
+    "test": "mocha './src/**/*.spec.js' --exit",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [],
   "author": "",
