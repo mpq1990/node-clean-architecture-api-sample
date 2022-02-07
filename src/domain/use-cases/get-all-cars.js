@@ -3,6 +3,10 @@ class GetAllCars {
     this.carRepository = carRepository;
   }
 
+  /**
+   *
+   * @returns a promise with all the cars
+   */
   execute() {
     return this.carRepository.getAll();
   }

@@ -1,3 +1,9 @@
+/**
+ * Ideally this would be handled by a DI framework.
+ * For now this function returns the db service based on the string passed by the caller.
+ * @param {a string with the database name to use} db
+ * @returns
+ */
 const dbProvider = (db) => {
   if (db === 'mongodb') {
     const DatabaseService = require('./mongodb/database-service');

@@ -1,3 +1,7 @@
+/**
+ * Schema for a car object
+ */
+
 const carSchema = {
   type: 'object',
   properties: {

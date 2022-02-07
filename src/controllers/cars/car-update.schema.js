@@ -1,3 +1,6 @@
+/**
+ * Schema for the car object for updating a car
+ */
 const carUpdateSchema = {
   type: 'object',
   properties: {

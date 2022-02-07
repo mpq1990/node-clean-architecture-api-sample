@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const IDatabaseServices = require('../../web/contracts/database-service');
 const CarRepository = require('./repository/car-repository');
 
+/**
+ * This service is the concrete implementation to the service interface exposed by the web framework
+ * Any caller must implement this service to connect or disconnect to the database.
+ * Ideally this class would be injected via a dependency injection container
+ */
 class DatabaseServices extends IDatabaseServices {
   constructor() {
     super();

@@ -2,6 +2,10 @@ const ICarRepository = require('../../../../domain/contracts/car-repository');
 const Car = require('../model/car');
 const { toCar, toCars, fromCarId } = require('./dto/car-dto');
 
+/**
+ * This is the concrete implementation of the repository
+ * It must adhere to the interface exposed by the car domain
+ */
 class CarRepository extends ICarRepository {
   constructor() {
     super();
